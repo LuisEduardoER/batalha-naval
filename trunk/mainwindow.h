@@ -6,7 +6,7 @@
 #include <QFrame>
 #include <QList>
 #include <QMouseEvent>
-
+#include <QPushButton>
 
 namespace Ui
 {
@@ -27,8 +27,8 @@ private:
 
     QList<int> pos_mapa1;
     QList<int> pos_mapa2;
-    QList<QFrame*> frame1;
-    QList<QFrame*> frame2;
+    QList<QPushButton*> btn_mapa1;
+    QList<QPushButton*> btn_mapa2;
 
 private slots:
     void on_actionSair_triggered();

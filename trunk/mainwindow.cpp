@@ -11,16 +11,18 @@ MainWindow::MainWindow(QWidget *parent)
         for(int j=0; j<10; j++){
             pos_mapa1.append(0);
             pos_mapa2.append(0);
-            QFrame *fr1 = new QFrame();
-            QFrame *fr2 = new QFrame();
-            fr1->setFrameShape(QFrame::Panel);
-            fr1->setFrameShadow(QFrame::Plain);
-            fr2->setFrameShape(QFrame::Panel);
-            fr2->setFrameShadow(QFrame::Plain);
-            frame1.append(fr1);
-            frame2.append(fr2);
-            ui->gridLayout->addWidget(fr1, i, j);
-            ui->gridLayout_3->addWidget(fr2, i, j);
+
+            QPushButton *btn1 = new QPushButton();
+            QPushButton *btn2 = new QPushButton();
+
+
+            btn1->setMinimumSize(36, 36);
+            btn2->setMinimumSize(36, 36);
+            btn_mapa1.append(btn1);
+            btn_mapa2.append(btn2);
+
+            ui->gridLayout->addWidget(btn1, i, j);
+            ui->gridLayout_3->addWidget(btn2, i, j);
         }
     }
 }
