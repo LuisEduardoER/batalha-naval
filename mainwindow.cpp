@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setMouseTracking(true);
+    btn_gp1 = new QButtonGroup();
+    btn_gp2 = new QButtonGroup();
+    int cont=0;
     for(int i=0; i<10; i++){
         for(int j=0; j<10; j++){
             pos_mapa1.append(0);
@@ -23,8 +26,27 @@ MainWindow::MainWindow(QWidget *parent)
 
             ui->gridLayout->addWidget(btn1, i, j);
             ui->gridLayout_3->addWidget(btn2, i, j);
+            
+            btn_gp1->addButton(btn1);
+            btn_gp1->setId(btn1, cont);
+
+            btn_gp2->addButton(btn2);
+            btn_gp2->setId(btn2, cont++);
+
+            connect(btn_gp1, SIGNAL(buttonClicked(int)),this, SLOT(click_btn1(int)));
+            connect(btn_gp2, SIGNAL(buttonClicked(int)),this, SLOT(click_btn2(int)));
         }
     }
+}
+
+int MainWindow::click_btn1(int pos){
+    int num = btn_gp1->id(btn_gp1->button(pos));
+    ui->lineEdit->setText(QString::number(num));
+}
+
+int MainWindow::click_btn2(int pos){
+    int num = btn_gp1->id(btn_gp1->button(pos));
+    ui->lineEdit_2->setText(QString::number(num));
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)

@@ -7,6 +7,7 @@
 #include <QList>
 #include <QMouseEvent>
 #include <QPushButton>
+#include <QButtonGroup>
 
 namespace Ui
 {
@@ -30,8 +31,15 @@ private:
     QList<QPushButton*> btn_mapa1;
     QList<QPushButton*> btn_mapa2;
 
+    QButtonGroup *btn_gp1;
+    QButtonGroup *btn_gp2;
+
 private slots:
     void on_actionSair_triggered();
+
+public slots:
+    int click_btn1(int);
+    int click_btn2(int);
 
 protected:
     void mouseReleaseEvent(QMouseEvent *event);
