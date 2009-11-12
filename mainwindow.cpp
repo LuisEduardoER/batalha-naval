@@ -7,7 +7,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setMouseTracking(true);
-    btn_gp1 = new QButtonGroup();
+    IniciaTabuleiro();
+    AdicionarNavios();
+}
+
+void MainWindow::IniciaTabuleiro(){
     btn_gp2 = new QButtonGroup();
     int cont=0;
     for(int i=0; i<10; i++){
@@ -15,45 +19,43 @@ MainWindow::MainWindow(QWidget *parent)
             pos_mapa1.append(0);
             pos_mapa2.append(0);
 
-            QPushButton *btn1 = new QPushButton();
+            QFrame *frm1 = new QFrame();
             QPushButton *btn2 = new QPushButton();
 
-
-            btn1->setMinimumSize(36, 36);
             btn2->setMinimumSize(36, 36);
-            btn_mapa1.append(btn1);
+            frm1->setFrameShape(QFrame::Panel);
+            frm1->setFrameShadow(QFrame::Plain);
+
+
+            frm_mapa1.append(frm1);
             btn_mapa2.append(btn2);
 
-            ui->gridLayout->addWidget(btn1, i, j);
+            ui->gridLayout->addWidget(frm1, i, j);
             ui->gridLayout_3->addWidget(btn2, i, j);
-            
-            btn_gp1->addButton(btn1);
-            btn_gp1->setId(btn1, cont);
 
             btn_gp2->addButton(btn2);
             btn_gp2->setId(btn2, cont++);
 
-            connect(btn_gp1, SIGNAL(buttonClicked(int)),this, SLOT(click_btn1(int)));
             connect(btn_gp2, SIGNAL(buttonClicked(int)),this, SLOT(click_btn2(int)));
         }
     }
 }
 
-int MainWindow::click_btn1(int pos){
-    int num = btn_gp1->id(btn_gp1->button(pos));
-    ui->lineEdit->setText(QString::number(num));
+void MainWindow::AdicionarNavios(){
+    QListWidgetItem *barco1 = new QListWidgetItem(ui->listWidget);
+    barco1->setIcon(QIcon("navio.jpg"));
 }
 
+
 int MainWindow::click_btn2(int pos){
-    int num = btn_gp1->id(btn_gp1->button(pos));
-    ui->lineEdit_2->setText(QString::number(num));
+    int num = btn_gp2->id(btn_gp2->button(pos));
+
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
 
-    ui->lineEdit->setText(QString::number(event->x()));
-    ui->lineEdit_2->setText(QString::number(event->y()));
+
 }
 
 MainWindow::~MainWindow()
