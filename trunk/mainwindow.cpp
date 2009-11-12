@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::IniciaTabuleiro(){
+    btn_gp1 = new QButtonGroup();
     btn_gp2 = new QButtonGroup();
     int cont=0;
     for(int i=0; i<10; i++){
@@ -19,23 +20,25 @@ void MainWindow::IniciaTabuleiro(){
             pos_mapa1.append(0);
             pos_mapa2.append(0);
 
-            QFrame *frm1 = new QFrame();
+            QPushButton *btn1 = new QPushButton();
             QPushButton *btn2 = new QPushButton();
 
+
+            btn1->setMinimumSize(36, 36);
             btn2->setMinimumSize(36, 36);
-            frm1->setFrameShape(QFrame::Panel);
-            frm1->setFrameShadow(QFrame::Plain);
-
-
-            frm_mapa1.append(frm1);
+            btn_mapa1.append(btn1);
             btn_mapa2.append(btn2);
 
-            ui->gridLayout->addWidget(frm1, i, j);
+            ui->gridLayout->addWidget(btn1, i, j);
             ui->gridLayout_3->addWidget(btn2, i, j);
+
+            btn_gp1->addButton(btn1);
+            btn_gp1->setId(btn1, cont);
 
             btn_gp2->addButton(btn2);
             btn_gp2->setId(btn2, cont++);
 
+            connect(btn_gp1, SIGNAL(buttonClicked(int)),this, SLOT(click_btn1(int)));
             connect(btn_gp2, SIGNAL(buttonClicked(int)),this, SLOT(click_btn2(int)));
         }
     }
@@ -46,9 +49,13 @@ void MainWindow::AdicionarNavios(){
     barco1->setIcon(QIcon("navio.jpg"));
 }
 
+int MainWindow::click_btn1(int pos){
+    int num = btn_gp1->id(btn_gp1->button(pos));
+
+}
 
 int MainWindow::click_btn2(int pos){
-    int num = btn_gp2->id(btn_gp2->button(pos));
+    int num = btn_gp1->id(btn_gp1->button(pos));
 
 }
 
