@@ -1,6 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#define HORIZONTAL 1
+#define VERTICAL 2
+
 #include <QtGui/QMainWindow>
 #include <QLabel>
 #include <QFrame>
@@ -35,15 +38,18 @@ private:
     QButtonGroup *btn_gp1;
     QButtonGroup *btn_gp2;
 
+    int numN;
+
 private slots:
     void on_actionSair_triggered();
 
 public slots:
     int click_btn1(int);
     int click_btn2(int);
+    void setNumN(int);
 
 protected:
-    void mouseReleaseEvent(QMouseEvent *event);
+
 };
 
 

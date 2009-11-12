@@ -25,6 +25,7 @@ void MainWindow::IniciaTabuleiro(){
 
 
             btn1->setMinimumSize(36, 36);
+            btn1->setMouseTracking(true);
             btn2->setMinimumSize(36, 36);
             btn_mapa1.append(btn1);
             btn_mapa2.append(btn2);
@@ -40,13 +41,28 @@ void MainWindow::IniciaTabuleiro(){
 
             connect(btn_gp1, SIGNAL(buttonClicked(int)),this, SLOT(click_btn1(int)));
             connect(btn_gp2, SIGNAL(buttonClicked(int)),this, SLOT(click_btn2(int)));
+
+            connect(ui->listWidget, SIGNAL(currentRowChanged(int)), this, SLOT(setNumN(int)));
         }
     }
 }
 
 void MainWindow::AdicionarNavios(){
     QListWidgetItem *barco1 = new QListWidgetItem(ui->listWidget);
+    barco1->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
     barco1->setIcon(QIcon("navio.jpg"));
+
+    QListWidgetItem *barco2 = new QListWidgetItem(ui->listWidget);
+    barco2->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+    barco2->setIcon(QIcon("navio.jpg"));
+
+    QListWidgetItem *barco3 = new QListWidgetItem(ui->listWidget);
+    barco3->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+    barco3->setIcon(QIcon("navio.jpg"));
+
+    QListWidgetItem *barco4 = new QListWidgetItem(ui->listWidget);
+    barco4->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+    barco4->setIcon(QIcon("navio.jpg"));
 }
 
 int MainWindow::click_btn1(int pos){
@@ -59,10 +75,8 @@ int MainWindow::click_btn2(int pos){
 
 }
 
-void MainWindow::mouseReleaseEvent(QMouseEvent *event)
-{
-
-
+void MainWindow::setNumN(int num){
+    numN = num;
 }
 
 MainWindow::~MainWindow()
