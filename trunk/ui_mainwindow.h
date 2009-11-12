@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-** Created: Wed 11. Nov 23:04:22 2009
+** Created: Thu 12. Nov 00:26:07 2009
 **      by: Qt User Interface Compiler version 4.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -16,12 +16,14 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QFrame>
 #include <QtGui/QGridLayout>
+#include <QtGui/QGroupBox>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QListWidget>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
+#include <QtGui/QRadioButton>
 #include <QtGui/QToolBar>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
@@ -41,7 +43,12 @@ public:
     QFrame *mapa2;
     QGridLayout *gridLayout_2;
     QGridLayout *gridLayout_3;
+    QHBoxLayout *horizontalLayout_2;
     QListWidget *listWidget;
+    QGroupBox *groupBox;
+    QVBoxLayout *verticalLayout_2;
+    QRadioButton *radioButton;
+    QRadioButton *radioButton_2;
     QMenuBar *menuBar;
     QMenu *menuArquivo;
     QToolBar *mainToolBar;
@@ -107,17 +114,43 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         listWidget = new QListWidget(centralWidget);
         listWidget->setObjectName(QString::fromUtf8("listWidget"));
         listWidget->setMaximumSize(QSize(16777215, 150));
-        listWidget->setDragDropMode(QAbstractItemView::DragDrop);
+        listWidget->setAcceptDrops(false);
         listWidget->setMovement(QListView::Free);
+        listWidget->setProperty("isWrapping", QVariant(false));
         listWidget->setLayoutMode(QListView::Batched);
         listWidget->setViewMode(QListView::IconMode);
         listWidget->setUniformItemSizes(false);
         listWidget->setWordWrap(false);
 
-        verticalLayout->addWidget(listWidget);
+        horizontalLayout_2->addWidget(listWidget);
+
+        groupBox = new QGroupBox(centralWidget);
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        verticalLayout_2 = new QVBoxLayout(groupBox);
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setMargin(11);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        radioButton = new QRadioButton(groupBox);
+        radioButton->setObjectName(QString::fromUtf8("radioButton"));
+
+        verticalLayout_2->addWidget(radioButton);
+
+        radioButton_2 = new QRadioButton(groupBox);
+        radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
+
+        verticalLayout_2->addWidget(radioButton_2);
+
+
+        horizontalLayout_2->addWidget(groupBox);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -144,6 +177,9 @@ public:
         actionSair->setText(QApplication::translate("MainWindow", "Sair", 0, QApplication::UnicodeUTF8));
         mapa1->setStyleSheet(QApplication::translate("MainWindow", "background-image: url(Mar.jpg);", 0, QApplication::UnicodeUTF8));
         mapa2->setStyleSheet(QApplication::translate("MainWindow", "background-image: url(Mar.jpg);", 0, QApplication::UnicodeUTF8));
+        groupBox->setTitle(QApplication::translate("MainWindow", "Posi\303\247ao", 0, QApplication::UnicodeUTF8));
+        radioButton->setText(QApplication::translate("MainWindow", "Horizontal", 0, QApplication::UnicodeUTF8));
+        radioButton_2->setText(QApplication::translate("MainWindow", "Vertical", 0, QApplication::UnicodeUTF8));
         menuArquivo->setTitle(QApplication::translate("MainWindow", "Arquivo", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
