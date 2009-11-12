@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-** Created: Tue 10. Nov 20:55:45 2009
+** Created: Wed 11. Nov 23:04:22 2009
 **      by: Qt User Interface Compiler version 4.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -18,7 +18,7 @@
 #include <QtGui/QGridLayout>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
-#include <QtGui/QLineEdit>
+#include <QtGui/QListWidget>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
@@ -41,9 +41,7 @@ public:
     QFrame *mapa2;
     QGridLayout *gridLayout_2;
     QGridLayout *gridLayout_3;
-    QWidget *widget;
-    QLineEdit *lineEdit;
-    QLineEdit *lineEdit_2;
+    QListWidget *listWidget;
     QMenuBar *menuBar;
     QMenu *menuArquivo;
     QToolBar *mainToolBar;
@@ -109,17 +107,17 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setMaximumSize(QSize(800, 150));
-        lineEdit = new QLineEdit(widget);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(60, 80, 113, 20));
-        lineEdit_2 = new QLineEdit(widget);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(60, 110, 113, 20));
+        listWidget = new QListWidget(centralWidget);
+        listWidget->setObjectName(QString::fromUtf8("listWidget"));
+        listWidget->setMaximumSize(QSize(16777215, 150));
+        listWidget->setDragDropMode(QAbstractItemView::DragDrop);
+        listWidget->setMovement(QListView::Free);
+        listWidget->setLayoutMode(QListView::Batched);
+        listWidget->setViewMode(QListView::IconMode);
+        listWidget->setUniformItemSizes(false);
+        listWidget->setWordWrap(false);
 
-        verticalLayout->addWidget(widget);
+        verticalLayout->addWidget(listWidget);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
