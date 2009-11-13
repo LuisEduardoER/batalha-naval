@@ -4,10 +4,8 @@
 TARGET = jogo
 TEMPLATE = app
 SOURCES += main.cpp \
-    mainwindow.cpp \
-    CamadaSocket.cpp
-HEADERS += mainwindow.h \
-    CamadaSocket.h
+    mainwindow.cpp
+HEADERS += mainwindow.h
 FORMS += mainwindow.ui
 
 QT       += network
