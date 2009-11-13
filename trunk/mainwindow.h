@@ -35,18 +35,24 @@ private:
     QList<QPushButton*> btn_mapa1;
     QList<QPushButton*> btn_mapa2;
 
+    QList<int> tam_barco;
+    QList<int> pos_barco;
+    QList<int> num_barco;
+
     QButtonGroup *btn_gp1;
     QButtonGroup *btn_gp2;
 
     int numN;
 
 private slots:
+    void on_radioButton_2_clicked();
+    void on_radioButton_clicked();
     void on_actionSair_triggered();
 
 public slots:
     int click_btn1(int);
     int click_btn2(int);
-    void setNumN(int);
+    void setNumN();
 
 protected:
 
