@@ -18,8 +18,8 @@ void MainWindow::IniciaTabuleiro(){
     int cont=0;
     for(int i=0; i<10; i++){
         for(int j=0; j<10; j++){
-            pos_mapa1.append(0);
-            pos_mapa2.append(0);
+            pos_mapa1.append(-1);
+            pos_mapa2.append(-1);
 
             QPushButton *btn1 = new QPushButton();
             QPushButton *btn2 = new QPushButton();
@@ -115,13 +115,17 @@ int MainWindow::click_btn1(int pos){
 
     if(numN>-1){
         if(pos_barco.at(numN)==HORIZONTAL){
-            if(VerificaCantoDireito(num, tam_barco.at(numN)))
+            if(VerificaCantoDireito(num, tam_barco.at(numN))){
                 AddBarcoHorizontal(num);
+                RemoveBarcoLista();
+            }
         } else if(pos_barco.at(numN)==VERTICAL){
-            if(VerificaCantoInferior(num, tam_barco.at(numN)))
+            if(VerificaCantoInferior(num, tam_barco.at(numN))){
                 AddBarcoVertical(num);
+                RemoveBarcoLista();
+            }
         }
-        RemoveBarcoLista();
+
     }
 }
 
@@ -235,11 +239,30 @@ void MainWindow::RemoveBarcoLista(){
 }
 
 bool MainWindow::VerificaCantoDireito(int posAtu, int tam){
-    return(true);
+    int aux;
+    for(aux=posAtu; aux>10; aux=aux-10);
+    if((aux+tam-1)<10){
+        for(int i=0; i<tam; i++){
+            if(pos_mapa1.at(posAtu+i)!=MAR)
+                return(false);
+        }
+        return(true);
+    }
+    else
+        return(false);
 }
 
 bool MainWindow::VerificaCantoInferior(int posAtu, int tam){
-    return(true);
+    int aux = posAtu;
+    if((aux+(tam-1)*10)<100){
+        for(int i=0; i<tam; i++){
+            if(pos_mapa1.at(aux+i*10)!=MAR)
+                return(false);
+        }
+        return(true);
+    }
+    else
+        return(false);
 }
 
 void MainWindow::AddBarcoHorizontal(int pos){
