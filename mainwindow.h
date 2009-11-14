@@ -49,6 +49,9 @@ private:
     QList<QPushButton*> btn_mapa1;
     QList<QPushButton*> btn_mapa2;
 
+    QList<QFrame*> frm_mapa1;
+    QList<QFrame*> frm_mapa2;
+
     QList<int> tam_barco;
     QList<int> pos_barco;
     QList<int> num_barco;
