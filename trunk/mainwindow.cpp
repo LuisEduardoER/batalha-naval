@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     numN=-1;
     IniciaTabuleiro();
     AdicionarNavios();
+    BloqueiaMapa2();
 }
 
 void MainWindow::IniciaTabuleiro(){
@@ -141,7 +142,9 @@ int MainWindow::click_btn1(int pos){
 
 int MainWindow::click_btn2(int pos){
     int num = btn_gp1->id(btn_gp1->button(pos));
-
+    if(!VerificaJogada(num)){
+        BloqueiaMapa2();
+    }
 }
 
 void MainWindow::setNumN(){
@@ -249,6 +252,8 @@ void MainWindow::RemoveBarcoLista(){
         if(ui->listWidget->count()==0){
             ui->radioButton->setEnabled(false);
             ui->radioButton_2->setEnabled(false);
+            BloqueiaMapa1();
+            DesbloqueiaMapa2();
         }
 
 }
@@ -386,4 +391,28 @@ void MainWindow::AddBarcoVertical(int pos){
                     break;
 
     }
+}
+
+bool MainWindow::VerificaJogada(int pos){
+    return(true);
+}
+
+void MainWindow::BloqueiaMapa1(){
+    for(int i=0; i< btn_mapa1.count(); i++)
+                btn_mapa1.at(i)->setEnabled(false);
+}
+
+void MainWindow::DesbloqueiaMapa1(){
+    for(int i=0; i< btn_mapa1.count(); i++)
+                btn_mapa1.at(i)->setEnabled(true);
+}
+
+void MainWindow::BloqueiaMapa2(){
+    for(int i=0; i< btn_mapa2.count(); i++)
+                btn_mapa2.at(i)->setEnabled(false);
+}
+
+void MainWindow::DesbloqueiaMapa2(){
+    for(int i=0; i< btn_mapa2.count(); i++)
+                btn_mapa2.at(i)->setEnabled(true);
 }

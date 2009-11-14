@@ -41,6 +41,13 @@ public:
     void AddBarcoHorizontal(int);
     void AddBarcoVertical(int);
 
+    bool VerificaJogada(int);
+
+    void BloqueiaMapa1();
+    void DesbloqueiaMapa1();
+    void BloqueiaMapa2();
+    void DesbloqueiaMapa2();
+
 private:
     Ui::MainWindow *ui;
 
