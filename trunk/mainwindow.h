@@ -4,6 +4,13 @@
 #define HORIZONTAL 1
 #define VERTICAL 2
 
+#define BARCO1 0
+#define BARCO2 1
+#define BARCO3 2
+#define BARCO4 3
+#define BARCO5 4
+#define SUBMARINO 5
+
 #include <QtGui/QMainWindow>
 #include <QLabel>
 #include <QFrame>
@@ -26,6 +33,11 @@ public:
     ~MainWindow();
     void IniciaTabuleiro();
     void AdicionarNavios();
+    void RemoveBarcoLista();
+    bool VerificaCantoDireito(int, int);
+    bool VerificaCantoInferior(int, int);
+    void AddBarcoHorizontal(int);
+    void AddBarcoVertical(int);
 
 private:
     Ui::MainWindow *ui;
