@@ -12,6 +12,8 @@
 #define BARCO5 4
 #define SUBMARINO 5
 
+#define BARCOATINGIDO 10
+
 #include <QtGui/QMainWindow>
 #include <QLabel>
 #include <QFrame>
@@ -48,6 +50,9 @@ public:
     void BloqueiaMapa2();
     void DesbloqueiaMapa2();
 
+    void NaufragarEmbarcacao(int);
+    bool VerificaFim();
+
 private:
     Ui::MainWindow *ui;
 
@@ -59,9 +64,11 @@ private:
     QList<QFrame*> frm_mapa1;
     QList<QFrame*> frm_mapa2;
 
-    QList<int> tam_barco;
-    QList<int> pos_barco;
-    QList<int> num_barco;
+    int qtdBarco;
+
+    QList<int> tam_barco; // 1, 2, 3...
+    QList<int> pos_barco; // horizontal/vertical
+    QList<int> num_barco; // numero da embarcaçao: barco1, barco2...
 
     QButtonGroup *btn_gp1;
     QButtonGroup *btn_gp2;
@@ -74,8 +81,8 @@ private slots:
     void on_actionSair_triggered();
 
 public slots:
-    int click_btn1(int);
-    int click_btn2(int);
+    void click_btn1(int);
+    void click_btn2(int);
     void setNumN();
 
 protected:
