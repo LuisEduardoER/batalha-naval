@@ -6,7 +6,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setMouseTracking(true);
     numN=-1;
     IniciaTabuleiro();
     AdicionarNavios();
@@ -53,15 +52,15 @@ void MainWindow::IniciaTabuleiro(){
 
             ui->radioButton_2->setChecked(true);
 
-            connect(btn_gp1, SIGNAL(buttonClicked(int)),this, SLOT(click_btn1(int)));
-            connect(btn_gp2, SIGNAL(buttonClicked(int)),this, SLOT(click_btn2(int)));
-
-            connect(ui->listWidget, SIGNAL(clicked(QModelIndex)), this, SLOT(setNumN()));
         }
     }
+    connect(ui->listWidget, SIGNAL(clicked(QModelIndex)), this, SLOT(setNumN()));
+    connect(btn_gp1, SIGNAL(buttonClicked(int)),this, SLOT(click_btn1(int)));
+    connect(btn_gp2, SIGNAL(buttonClicked(int)),this, SLOT(click_btn2(int)));
 }
 
 void MainWindow::AdicionarNavios(){
+    qtdBarco=0;
     QSize tam;
 
     QListWidgetItem *barco1 = new QListWidgetItem(ui->listWidget);
@@ -73,6 +72,7 @@ void MainWindow::AdicionarNavios(){
     tam_barco.append(2);
     pos_barco.append(VERTICAL);
     num_barco.append(BARCO1);
+    qtdBarco++;
 
     QListWidgetItem *barco2 = new QListWidgetItem(ui->listWidget);
     barco2->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -82,6 +82,7 @@ void MainWindow::AdicionarNavios(){
     tam_barco.append(3);
     pos_barco.append(VERTICAL);
     num_barco.append(BARCO2);
+    qtdBarco++;
 
     QListWidgetItem *barco3 = new QListWidgetItem(ui->listWidget);
     barco3->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -91,6 +92,7 @@ void MainWindow::AdicionarNavios(){
     tam_barco.append(4);
     pos_barco.append(VERTICAL);
     num_barco.append(BARCO3);
+    qtdBarco++;
 
     QListWidgetItem *barco4 = new QListWidgetItem(ui->listWidget);
     barco4->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -100,6 +102,7 @@ void MainWindow::AdicionarNavios(){
     tam_barco.append(4);
     pos_barco.append(VERTICAL);
     num_barco.append(BARCO4);
+    qtdBarco++;
 
     QListWidgetItem *barco5 = new QListWidgetItem(ui->listWidget);
     barco5->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -109,6 +112,8 @@ void MainWindow::AdicionarNavios(){
     tam_barco.append(5);
     pos_barco.append(VERTICAL);
     num_barco.append(BARCO5);
+    qtdBarco++;
+
 
     QListWidgetItem *sub = new QListWidgetItem(ui->listWidget);
     sub->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -121,7 +126,7 @@ void MainWindow::AdicionarNavios(){
     num_barco.append(SUBMARINO);
 }
 
-int MainWindow::click_btn1(int pos){
+void MainWindow::click_btn1(int pos){
     int num = btn_gp1->id(btn_gp1->button(pos));
 
     if(numN>-1){
@@ -140,10 +145,10 @@ int MainWindow::click_btn1(int pos){
     }
 }
 
-int MainWindow::click_btn2(int pos){
+void MainWindow::click_btn2(int pos){
     int num = btn_gp1->id(btn_gp1->button(pos));
-    if(!VerificaJogada(num)){
-        BloqueiaMapa2();
+    if(VerificaJogada(pos)==false){
+        //BloqueiaMapa2();
     }
 }
 
@@ -310,7 +315,7 @@ void MainWindow::AddBarcoHorizontal(int pos){
                     btn_gp1->button(pos+1)->hide();
                     btn_gp1->button(pos+2)->hide();
                     btn_gp1->button(pos+3)->hide();
-                    if(tam_barco.at(numN)==2){
+                    if(num_barco.at(numN)==BARCO3){
                         pos_mapa1.replace(pos, BARCO3);
                         pos_mapa1.replace(pos+1, BARCO3);
                         pos_mapa1.replace(pos+2, BARCO3);
@@ -364,7 +369,7 @@ void MainWindow::AddBarcoVertical(int pos){
                     btn_gp1->button(pos+10)->hide();
                     btn_gp1->button(pos+20)->hide();
                     btn_gp1->button(pos+30)->hide();
-                    if(tam_barco.at(numN)==2){
+                    if(num_barco.at(numN)==BARCO3){
                         pos_mapa1.replace(pos, BARCO3);
                         pos_mapa1.replace(pos+10, BARCO3);
                         pos_mapa1.replace(pos+20, BARCO3);
@@ -394,6 +399,48 @@ void MainWindow::AddBarcoVertical(int pos){
 }
 
 bool MainWindow::VerificaJogada(int pos){
+
+    if(pos>-1 && pos <100){
+        int aux = pos_mapa1.at(pos);
+        if(aux==MAR)
+            return(false);
+        else{
+            btn_mapa2.at(pos)->hide();
+            pos_mapa1.replace(pos, aux+BARCOATINGIDO);
+            for(int i=0; i<100; i++){
+                if(pos_mapa1.at(i)==aux){
+                    return(true); // ainda existe navio X
+                }
+            }
+
+            if((pos+10)<100)
+                if(pos_mapa1.at(pos+10)==aux+BARCOATINGIDO){
+                    NaufragarEmbarcacao(aux);
+                    return(true);
+                }
+            if((pos-10)>-1)
+                if(pos_mapa1.at(pos-10)==aux+BARCOATINGIDO){
+                    NaufragarEmbarcacao(aux);
+                    return(true);
+                }
+
+            int auxPos;
+            for(auxPos=pos; auxPos>10; auxPos=auxPos-10);
+            if((auxPos+1)<10)
+                if(pos_mapa1.at(pos+1)==aux+BARCOATINGIDO){
+                    NaufragarEmbarcacao(aux);
+                    return(true);
+                }
+            if((auxPos-1)>-1)
+                if(pos_mapa1.at(pos-1)==aux+BARCOATINGIDO){
+                    NaufragarEmbarcacao(aux);
+                    return(true);
+                }
+            //se passar por todos os ifs quer dizer que entao é um submarino
+            pos_mapa1.replace(pos, MAR);
+            return(true);
+        }
+    }
     return(true);
 }
 
@@ -415,4 +462,27 @@ void MainWindow::BloqueiaMapa2(){
 void MainWindow::DesbloqueiaMapa2(){
     for(int i=0; i< btn_mapa2.count(); i++)
                 btn_mapa2.at(i)->setEnabled(true);
+}
+
+void MainWindow::NaufragarEmbarcacao(int barco){
+    for(int i=0; i<100; i++)
+                if(pos_mapa1.at(i)==barco+BARCOATINGIDO)
+                    pos_mapa1.replace(barco, MAR);
+    qtdBarco--;
+    QMessageBox msg;
+    msg.setText("Um navio foi afundado!");
+    msg.exec();
+    if(VerificaFim()){
+        BloqueiaMapa1();
+        BloqueiaMapa2();
+        msg.setText("Fim de Jogo!");
+        msg.exec();
+    }
+}
+
+bool MainWindow::VerificaFim(){
+    if(qtdBarco==0)
+        return(true);
+    else
+        return(false);
 }
