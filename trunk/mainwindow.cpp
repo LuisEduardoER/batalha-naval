@@ -18,12 +18,22 @@ void MainWindow::IniciaTabuleiro(){
     int cont=0;
     for(int i=0; i<10; i++){
         for(int j=0; j<10; j++){
-            pos_mapa1.append(-1);
-            pos_mapa2.append(-1);
+            pos_mapa1.append(MAR);
+            pos_mapa2.append(MAR);
 
             QPushButton *btn1 = new QPushButton();
             QPushButton *btn2 = new QPushButton();
 
+            QFrame *frm1 = new QFrame();
+            QFrame *frm2 = new QFrame();
+
+            frm1->setFrameShape(QFrame::Panel);
+            frm1->setFrameShadow(QFrame::Plain);
+            ui->gridLayout->addWidget(frm1, i, j);
+
+            frm2->setFrameShape(QFrame::Panel);
+            frm2->setFrameShadow(QFrame::Plain);
+            ui->gridLayout_3->addWidget(frm2, i, j);
 
             btn1->setMinimumSize(36, 36);
             btn1->setMouseTracking(true);
@@ -136,8 +146,13 @@ int MainWindow::click_btn2(int pos){
 
 void MainWindow::setNumN(){
     for(int i=0; i<ui->listWidget->count(); i++){
-        if(ui->listWidget->isItemSelected(ui->listWidget->item(i)))
+        if(ui->listWidget->isItemSelected(ui->listWidget->item(i))){
             numN = ui->listWidget->row(ui->listWidget->item(i));
+            if(pos_barco.at(numN)==HORIZONTAL)
+                ui->radioButton->setChecked(true);
+            else
+                ui->radioButton_2->setChecked(true);
+        }
     }
 }
 
@@ -269,21 +284,39 @@ void MainWindow::AddBarcoHorizontal(int pos){
     switch(tam_barco.at(numN)){
                 case 1:
                     btn_gp1->button(pos)->hide();
+                    pos_mapa1.replace(pos, SUBMARINO);
                     break;
                 case 2:
                     btn_gp1->button(pos)->hide();
                     btn_gp1->button(pos+1)->hide();
+                    pos_mapa1.replace(pos, BARCO1);
+                    pos_mapa1.replace(pos+1, BARCO1);
                     break;
                 case 3:
                     btn_gp1->button(pos)->hide();
                     btn_gp1->button(pos+1)->hide();
                     btn_gp1->button(pos+2)->hide();
+                    pos_mapa1.replace(pos, BARCO2);
+                    pos_mapa1.replace(pos+1, BARCO2);
+                    pos_mapa1.replace(pos+2, BARCO2);
                     break;
                 case 4:
                     btn_gp1->button(pos)->hide();
                     btn_gp1->button(pos+1)->hide();
                     btn_gp1->button(pos+2)->hide();
                     btn_gp1->button(pos+3)->hide();
+                    if(tam_barco.at(numN)==2){
+                        pos_mapa1.replace(pos, BARCO3);
+                        pos_mapa1.replace(pos+1, BARCO3);
+                        pos_mapa1.replace(pos+2, BARCO3);
+                        pos_mapa1.replace(pos+3, BARCO3);
+                    }
+                    else{
+                        pos_mapa1.replace(pos, BARCO4);
+                        pos_mapa1.replace(pos+1, BARCO4);
+                        pos_mapa1.replace(pos+2, BARCO4);
+                        pos_mapa1.replace(pos+3, BARCO4);
+                    }
                     break;
                 case 5:
                     btn_gp1->button(pos)->hide();
@@ -291,6 +324,11 @@ void MainWindow::AddBarcoHorizontal(int pos){
                     btn_gp1->button(pos+2)->hide();
                     btn_gp1->button(pos+3)->hide();
                     btn_gp1->button(pos+4)->hide();
+                    pos_mapa1.replace(pos, BARCO5);
+                    pos_mapa1.replace(pos+1, BARCO5);
+                    pos_mapa1.replace(pos+2, BARCO5);
+                    pos_mapa1.replace(pos+3, BARCO5);
+                    pos_mapa1.replace(pos+4, BARCO5);
                     break;
 
     }
