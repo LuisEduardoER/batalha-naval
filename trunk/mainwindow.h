@@ -4,6 +4,7 @@
 #define HORIZONTAL 1
 #define VERTICAL 2
 
+#define MAR -1
 #define BARCO1 0
 #define BARCO2 1
 #define BARCO3 2
@@ -18,6 +19,7 @@
 #include <QMouseEvent>
 #include <QPushButton>
 #include <QButtonGroup>
+#include <QMessageBox>
 
 namespace Ui
 {

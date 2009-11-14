@@ -1,7 +1,8 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-
+** Created: Fri 13. Nov 23:29:51 2009
+**      by: Qt User Interface Compiler version 4.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
 ********************************************************************************/
@@ -120,9 +121,6 @@ public:
         listWidget->setObjectName(QString::fromUtf8("listWidget"));
         listWidget->setMaximumSize(QSize(16777215, 150));
         listWidget->setAcceptDrops(false);
-        listWidget->setMovement(QListView::Free);
-        listWidget->setProperty("isWrapping", QVariant(false));
-        listWidget->setLayoutMode(QListView::Batched);
         listWidget->setIconSize(QSize(100, 100));
         listWidget->setViewMode(QListView::IconMode);
         listWidget->setUniformItemSizes(false);
