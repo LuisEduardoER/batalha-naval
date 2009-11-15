@@ -60,6 +60,8 @@ void MainWindow::IniciaTabuleiro(){
             btn_gp2->setId(btn2, cont++);
 
             ui->radioButton_2->setChecked(true);
+            ui->radioButton->setEnabled(false);
+            ui->radioButton_2->setEnabled(false);
 
         }
     }
@@ -173,6 +175,8 @@ void MainWindow::setNumN(){
                 ui->radioButton_2->setChecked(true);
         }
     }
+    ui->radioButton->setEnabled(true);
+    ui->radioButton_2->setEnabled(true);
 }
 
 MainWindow::~MainWindow()
@@ -353,6 +357,8 @@ void MainWindow::AddBarcoHorizontal(int pos){
                     break;
 
     }
+    ui->radioButton->setEnabled(false);
+    ui->radioButton_2->setEnabled(false);
 }
 
 void MainWindow::AddBarcoVertical(int pos){
@@ -407,6 +413,8 @@ void MainWindow::AddBarcoVertical(int pos){
                     break;
 
     }
+    ui->radioButton->setEnabled(false);
+    ui->radioButton_2->setEnabled(false);
 }
 
 bool MainWindow::VerificaJogada(int pos){
