@@ -1,11 +1,13 @@
 #include "Jogador.h"
 #include <QDebug>
 
-Jogador::Jogador(int t) : QThread()
+Jogador::Jogador(int t, int p, QString h) : QThread()
 {
     tipo_conexao=t;
-    this->server = new Servidor();
-    this->cliente = new Socket();
+    port=p;
+    host=h;
+    this->server = new Servidor(port);
+    this->cliente = new Socket(port, host);
     this->chat = new Chat();
 }
 

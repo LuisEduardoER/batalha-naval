@@ -8,11 +8,14 @@ class Socket:public QObject{
     Q_OBJECT
 
 public:
-    Socket();
+    Socket(int, QString);
     void init();
     QString LerMensagem();
     void EnviarMensagem(QString _msg);
     QTcpSocket *socket;
+
+    int port;
+    QString host;
 private:
 
     bool error;

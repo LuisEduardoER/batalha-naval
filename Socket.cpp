@@ -1,6 +1,8 @@
 #include "Socket.h"
 #include <QMessageBox>
-Socket::Socket() : QObject(){
+Socket::Socket(int p, QString h) : QObject(){
+    host=h;
+    port=p;
     this->socket = 0;
     this->error = false;
     this->finish = false;
@@ -8,7 +10,7 @@ Socket::Socket() : QObject(){
 
 void Socket::init(){
     this->socket = new QTcpSocket();
-    this->socket->connectToHost("localhost",8000);
+    this->socket->connectToHost(host,port);
     //connect (this->socket, SIGNAL(readyRead()), this, SLOT(LerMensagem()));
 }
 

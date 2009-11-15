@@ -4,8 +4,9 @@
 using namespace std;
 
 
-Servidor::Servidor(): QObject()
+Servidor::Servidor(int p): QObject()
 {
+    port=p;
     this->server=0;
     this->cliente = 0;
 }
@@ -19,7 +20,7 @@ void Servidor::addCliente(){
 
 void Servidor::init(){
     this->server = new QTcpServer;
-    this->server->listen(QHostAddress::Any, 8000);
+    this->server->listen(QHostAddress::Any, port);
     connect (this->server, SIGNAL(newConnection()), this, SLOT(addCliente()));
 
 }
