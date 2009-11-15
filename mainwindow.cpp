@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::IniciaTabuleiro(){
+    Chat *chat = new Chat();
+    ui->horizontalLayout_2->addWidget(chat,Qt::AlignRight);
+
     btn_gp1 = new QButtonGroup();
     btn_gp2 = new QButtonGroup();
     int cont=0;
@@ -485,4 +488,14 @@ bool MainWindow::VerificaFim(){
         return(true);
     else
         return(false);
+}
+
+void MainWindow::on_actionCriar_Servidor_triggered()
+{
+
+}
+
+void MainWindow::on_actionConectar_triggered()
+{
+
 }

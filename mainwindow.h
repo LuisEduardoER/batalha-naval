@@ -23,6 +23,8 @@
 #include <QButtonGroup>
 #include <QMessageBox>
 
+#include "Chat.h"
+
 namespace Ui
 {
     class MainWindow;
@@ -76,6 +78,8 @@ private:
     int numN;
 
 private slots:
+    void on_actionConectar_triggered();
+    void on_actionCriar_Servidor_triggered();
     void on_radioButton_2_clicked();
     void on_radioButton_clicked();
     void on_actionSair_triggered();
