@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    server = new Servidor();
     numN=-1;
     IniciaTabuleiro();
     AdicionarNavios();
@@ -32,11 +33,16 @@ void MainWindow::IniciaTabuleiro(){
 
             frm1->setFrameShape(QFrame::Panel);
             frm1->setFrameShadow(QFrame::Plain);
+            frm1->setStyleSheet("background: grey");
             ui->gridLayout->addWidget(frm1, i, j);
 
             frm2->setFrameShape(QFrame::Panel);
             frm2->setFrameShadow(QFrame::Plain);
+            frm2->setStyleSheet("background: grey");
             ui->gridLayout_3->addWidget(frm2, i, j);
+
+            frm_mapa1.append(frm1);
+            frm_mapa2.append(frm2);
 
             btn1->setMinimumSize(36, 36);
             btn1->setMouseTracking(true);
@@ -151,6 +157,8 @@ void MainWindow::click_btn1(int pos){
 void MainWindow::click_btn2(int pos){
     int num = btn_gp1->id(btn_gp1->button(pos));
     if(VerificaJogada(pos)==false){
+        btn_gp2->button(pos)->hide();
+        frm_mapa2.at(pos)->setStyleSheet("");
         //BloqueiaMapa2();
     }
 }
@@ -409,6 +417,7 @@ bool MainWindow::VerificaJogada(int pos){
             return(false);
         else{
             btn_mapa2.at(pos)->hide();
+            frm_mapa1.at(pos)->setStyleSheet("background-image: url(explodido.gif)");
             pos_mapa1.replace(pos, aux+BARCOATINGIDO);
             for(int i=0; i<100; i++){
                 if(pos_mapa1.at(i)==aux){
@@ -490,12 +499,13 @@ bool MainWindow::VerificaFim(){
         return(false);
 }
 
-void MainWindow::on_actionCriar_Servidor_triggered()
-{
-
-}
 
 void MainWindow::on_actionConectar_triggered()
 {
+    server->addCliente();
+}
 
+void MainWindow::on_actionCriar_Servidor_triggered()
+{
+    server->init();
 }
