@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'conexao.ui'
 **
-** Created: Sat 14. Nov 23:56:04 2009
+** Created: Sun 15. Nov 01:58:56 2009
 **      by: Qt User Interface Compiler version 4.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -47,7 +47,7 @@ public:
     {
         if (Conexao->objectName().isEmpty())
             Conexao->setObjectName(QString::fromUtf8("Conexao"));
-        Conexao->resize(400, 300);
+        Conexao->resize(233, 128);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -57,6 +57,11 @@ public:
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         groupBox = new QGroupBox(Conexao);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Minimum);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(groupBox->sizePolicy().hasHeightForWidth());
+        groupBox->setSizePolicy(sizePolicy1);
         horizontalLayout = new QHBoxLayout(groupBox);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         rbServidor = new QRadioButton(groupBox);

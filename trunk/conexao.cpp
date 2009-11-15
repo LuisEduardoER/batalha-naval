@@ -28,9 +28,19 @@ void Conexao::changeEvent(QEvent *e)
 void Conexao::on_rbServidor_clicked()
 {
     m_ui->edtIP->setEnabled(false);
+    tipo_conexao = SERVIDOR;
 }
 
 void Conexao::on_rbCliente_clicked()
 {
     m_ui->edtIP->setEnabled(true);
+    tipo_conexao = CLIENTE;
+}
+
+QString Conexao::host(){
+    return(m_ui->edtIP->text());
+}
+
+int Conexao::port(){
+    return(m_ui->edtPorta->text().toInt());
 }

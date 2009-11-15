@@ -12,6 +12,7 @@ public:
     //QList<QTcpSocket*> cliente;
     QTcpSocket *cliente;
     void EnviarMensagem(QString _msg);
+    QString LerMensagem();
 public slots:
     void addCliente();
 private:

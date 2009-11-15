@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-** Created: Sat 14. Nov 23:05:32 2009
+** Created: Sun 15. Nov 01:23:40 2009
 **      by: Qt User Interface Compiler version 4.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -35,7 +35,6 @@ class Ui_MainWindow
 public:
     QAction *actionSair;
     QAction *actionConectar;
-    QAction *actionCriar_Servidor;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
@@ -71,8 +70,6 @@ public:
         actionSair->setObjectName(QString::fromUtf8("actionSair"));
         actionConectar = new QAction(MainWindow);
         actionConectar->setObjectName(QString::fromUtf8("actionConectar"));
-        actionCriar_Servidor = new QAction(MainWindow);
-        actionCriar_Servidor->setObjectName(QString::fromUtf8("actionCriar_Servidor"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -168,7 +165,6 @@ public:
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
 
         menuBar->addAction(menuArquivo->menuAction());
-        menuArquivo->addAction(actionCriar_Servidor);
         menuArquivo->addAction(actionConectar);
         menuArquivo->addAction(actionSair);
 
@@ -182,7 +178,6 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0, QApplication::UnicodeUTF8));
         actionSair->setText(QApplication::translate("MainWindow", "Sair", 0, QApplication::UnicodeUTF8));
         actionConectar->setText(QApplication::translate("MainWindow", "Conectar", 0, QApplication::UnicodeUTF8));
-        actionCriar_Servidor->setText(QApplication::translate("MainWindow", "Criar Servidor", 0, QApplication::UnicodeUTF8));
         mapa1->setStyleSheet(QApplication::translate("MainWindow", "background-image: url(Mar.jpg);", 0, QApplication::UnicodeUTF8));
         mapa2->setStyleSheet(QApplication::translate("MainWindow", "background-image: url(Mar.jpg);", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("MainWindow", "Posi\303\247ao", 0, QApplication::UnicodeUTF8));
