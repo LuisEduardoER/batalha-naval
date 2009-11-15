@@ -14,13 +14,15 @@
 class Jogador: public QThread{
     Q_OBJECT
 public:
-    Jogador(int);
+    Jogador(int, int, QString);
     Servidor *server;
     Socket *cliente;
     Chat *chat;
 
     void init();
     int tipo_conexao;
+    int port;
+    QString host;
 public slots:
     void EnviarMensagem();
     void LerMensagem();

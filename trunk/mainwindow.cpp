@@ -514,7 +514,7 @@ void MainWindow::on_actionConectar_triggered()
         port=conexao->con->port();
         host=conexao->con->host();
         tipo_conexao=conexao->con->tipo_conexao;
-        player = new Jogador(tipo_conexao);
+        player = new Jogador(tipo_conexao, port, host);
         player->init();
         player->start();
         delete(chat);

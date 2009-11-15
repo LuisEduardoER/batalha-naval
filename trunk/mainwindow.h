@@ -35,7 +35,6 @@
 #include "Jogador.h"
 
 
-
 namespace Ui
 {
     class MainWindow;
