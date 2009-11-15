@@ -23,8 +23,15 @@ QString Socket::LerMensagem(){
     cout<<text.toStdString()<<endl;
     return text;
 }
-void  Socket::EnviarMensagem(QString _msg){
-    _msg.push_front("chat::");
+void  Socket::EnviarMensagem(QString _msg,int _mode){
+    if(_mode == CHAT)
+        _msg.push_front("chat::");
+    else if(_mode == JOGADA)
+        _msg.push_front("game::");
+    else if(_mode == RESPOSTA)
+        _msg.push_front("hit::");
+    else if(_mode == FIM)
+        _msg.push_front("end::");
     QByteArray data;
     QDataStream out (&data, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_0);

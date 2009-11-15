@@ -1,5 +1,11 @@
 #ifndef SERVIDOR_H
 #define SERVIDOR_H
+
+#define CHAT 1
+#define JOGADA 2
+#define RESPOSTA 3
+#define FIM 4
+
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QList>
@@ -11,7 +17,7 @@ public:
     void init();
     //QList<QTcpSocket*> cliente;
     QTcpSocket *cliente;
-    void EnviarMensagem(QString _msg);
+    void EnviarMensagem(QString _msg, int _mode);
     QString LerMensagem();
 
     int port;

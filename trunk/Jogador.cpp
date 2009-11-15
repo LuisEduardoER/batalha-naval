@@ -41,14 +41,14 @@ void Jogador::EnviarMensagem(){
         QString msg;
         msg = this->chat->getMensagem();
         this->chat->clearMensagem();
-        this->cliente->EnviarMensagem(msg);
+        this->cliente->EnviarMensagem(msg,1);
         this->chat->adicionarAConversa(msg);
     }
     else{
         QString msg;
         msg = this->chat->getMensagem();
         this->chat->clearMensagem();
-        this->server->EnviarMensagem(msg);
+        this->server->EnviarMensagem(msg, 1);
         this->chat->adicionarAConversa(msg);
         qDebug()<<msg;
     }
@@ -63,11 +63,18 @@ void Jogador::LerMensagem(){
         msg = this->server->LerMensagem();
    }
     msgSplit = msg.split("::");
-    if(tipo_conexao==CLIENTE && msgSplit.at(0) == "chat"){
-        this->chat->adicionarAConversa(msgSplit.at(1));
-    }
-    else if(msgSplit.at(0) == "chat"){
-        this->chat->adicionarAConversa(msgSplit.at(1));
-    }
+    if(msgSplit.at(0) == "chat"){
+        if(tipo_conexao==CLIENTE){
+            this->chat->adicionarAConversa(msgSplit.at(1));
+        }
+        else{
+            this->chat->adicionarAConversa(msgSplit.at(1));
+        }
+    }else if(msgSplit.at(0) == "game"){
 
+    }else if(msgSplit.at(0) == "hit"){
+
+    }else if(msgSplit.at(0) == "end"){
+
+    }
 }
