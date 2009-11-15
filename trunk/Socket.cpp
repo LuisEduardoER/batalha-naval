@@ -24,6 +24,7 @@ QString Socket::LerMensagem(){
     return text;
 }
 void  Socket::EnviarMensagem(QString _msg){
+    _msg.push_front("chat::");
     QByteArray data;
     QDataStream out (&data, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_0);
