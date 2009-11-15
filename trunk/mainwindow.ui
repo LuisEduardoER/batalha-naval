@@ -154,6 +154,8 @@
     <property name="title">
      <string>Arquivo</string>
     </property>
+    <addaction name="actionConectar"/>
+    <addaction name="actionCriar_Servidor"/>
     <addaction name="actionSair"/>
    </widget>
    <addaction name="menuArquivo"/>
@@ -169,6 +171,16 @@
   <action name="actionSair">
    <property name="text">
     <string>Sair</string>
+   </property>
+  </action>
+  <action name="actionConectar">
+   <property name="text">
+    <string>Conectar</string>
+   </property>
+  </action>
+  <action name="actionCriar_Servidor">
+   <property name="text">
+    <string>Criar Servidor</string>
    </property>
   </action>
  </widget>
