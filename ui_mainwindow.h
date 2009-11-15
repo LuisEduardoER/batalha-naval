@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-** Created: Sat 14. Nov 22:18:06 2009
+** Created: Sat 14. Nov 23:05:32 2009
 **      by: Qt User Interface Compiler version 4.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -168,8 +168,8 @@ public:
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
 
         menuBar->addAction(menuArquivo->menuAction());
-        menuArquivo->addAction(actionConectar);
         menuArquivo->addAction(actionCriar_Servidor);
+        menuArquivo->addAction(actionConectar);
         menuArquivo->addAction(actionSair);
 
         retranslateUi(MainWindow);

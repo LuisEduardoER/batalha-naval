@@ -24,6 +24,8 @@
 #include <QMessageBox>
 
 #include "Chat.h"
+#include "Socket.h"
+#include "Servidor.h"
 
 namespace Ui
 {
@@ -75,11 +77,13 @@ private:
     QButtonGroup *btn_gp1;
     QButtonGroup *btn_gp2;
 
+    Servidor *server;
+
     int numN;
 
 private slots:
-    void on_actionConectar_triggered();
     void on_actionCriar_Servidor_triggered();
+    void on_actionConectar_triggered();
     void on_radioButton_2_clicked();
     void on_radioButton_clicked();
     void on_actionSair_triggered();

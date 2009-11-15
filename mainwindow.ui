@@ -154,8 +154,8 @@
     <property name="title">
      <string>Arquivo</string>
     </property>
-    <addaction name="actionConectar"/>
     <addaction name="actionCriar_Servidor"/>
+    <addaction name="actionConectar"/>
     <addaction name="actionSair"/>
    </widget>
    <addaction name="menuArquivo"/>
