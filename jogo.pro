@@ -8,14 +8,17 @@ SOURCES += main.cpp \
     Socket.cpp \
     Servidor.cpp \
     Chat.cpp \
-    conexao.cpp
+    conexao.cpp \
+    frmconexao.cpp
 HEADERS += mainwindow.h \
     Socket.h \
     Servidor.h \
     Chat.h \
     ui_Chat.h \
-    conexao.h
+    conexao.h \
+    frmconexao.h
 FORMS += mainwindow.ui \
     Chat.ui \
-    conexao.ui
+    conexao.ui \
+    frmconexao.ui
 QT += network

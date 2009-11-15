@@ -11,6 +11,7 @@ public:
     Socket();
     void init();
     QString LerMensagem();
+    void EnviarMensagem(QString _msg);
     QTcpSocket *socket;
 private:
 

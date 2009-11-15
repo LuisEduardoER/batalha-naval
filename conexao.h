@@ -1,5 +1,7 @@
 #ifndef CONEXAO_H
 #define CONEXAO_H
+#define SERVIDOR 1
+#define CLIENTE 2
 
 #include <QtGui/QWidget>
 
@@ -13,6 +15,10 @@ class Conexao : public QWidget {
 public:
     explicit Conexao(QWidget *parent = 0);
     virtual ~Conexao();
+
+    QString host();
+    int port();
+    int tipo_conexao;
 
 protected:
     virtual void changeEvent(QEvent *e);

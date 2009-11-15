@@ -14,6 +14,9 @@
 
 #define BARCOATINGIDO 10
 
+#define SERVIDOR 1
+#define CLIENTE 2
+
 #include <QtGui/QMainWindow>
 #include <QLabel>
 #include <QFrame>
@@ -22,10 +25,16 @@
 #include <QPushButton>
 #include <QButtonGroup>
 #include <QMessageBox>
+#include <qthread.h>
+#include <QString>
 
 #include "Chat.h"
 #include "Socket.h"
 #include "Servidor.h"
+#include "frmconexao.h"
+
+
+
 
 namespace Ui
 {
@@ -57,6 +66,13 @@ public:
     void NaufragarEmbarcacao(int);
     bool VerificaFim();
 
+    Servidor *server;
+    Socket *cliente;
+
+    void init();
+
+    Chat* chat;
+
 private:
     Ui::MainWindow *ui;
 
@@ -77,12 +93,15 @@ private:
     QButtonGroup *btn_gp1;
     QButtonGroup *btn_gp2;
 
-    Servidor *server;
+    int port;
+    QString host;
+    int tipo_conexao;
 
     int numN;
 
+    void run();
+
 private slots:
-    void on_actionCriar_Servidor_triggered();
     void on_actionConectar_triggered();
     void on_radioButton_2_clicked();
     void on_radioButton_clicked();
@@ -92,6 +111,9 @@ public slots:
     void click_btn1(int);
     void click_btn2(int);
     void setNumN();
+
+    void EnviarMensagem();
+    void LerMensagem();
 
 protected:
 
