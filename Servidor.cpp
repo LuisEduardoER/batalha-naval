@@ -1,7 +1,7 @@
 #include "Servidor.h"
 #include <iostream>
 #include <QMessageBox>
-
+#include <QStringList>
 using namespace std;
 
 
@@ -26,18 +26,12 @@ void Servidor::init(){
 
 }
 void Servidor::EnviarMensagem(QString _msg){
+    _msg.push_front("chat::");
     QByteArray data;
     QDataStream out (&data, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_0);
     out << _msg;
-    /*
-    for(int i=0; i<this->cliente.size(); i++){
-        if (!this->cliente.at(i)->isOpen()) {
-            this->cliente.at(i)->open(QIODevice::ReadWrite);
-        }
-        this->cliente.at(i)->write(data);
-    }
-    */
+
     if (!this->cliente->isOpen()) {
         this->cliente->open(QIODevice::ReadWrite);
     }
@@ -51,7 +45,7 @@ QString Servidor::LerMensagem(){
     QString text;
     in >> text;
     qDebug("ola");
-    cout<<text.toStdString()<<endl;
+
     return text;
 }
 

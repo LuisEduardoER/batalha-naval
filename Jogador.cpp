@@ -54,16 +54,20 @@ void Jogador::EnviarMensagem(){
     }
 }
 void Jogador::LerMensagem(){
+    QStringList msgSplit;
+    QString msg;
     if(tipo_conexao==CLIENTE){
-        QString msg;
         msg = this->cliente->LerMensagem();
-        qDebug()<<msg;
-        this->chat->adicionarAConversa(msg);
     }
     else{
-        QString msg;
         msg = this->server->LerMensagem();
-        qDebug()<<msg;
-        this->chat->adicionarAConversa(msg);
+   }
+    msgSplit = msg.split("::");
+    if(tipo_conexao==CLIENTE && msgSplit.at(0) == "chat"){
+        this->chat->adicionarAConversa(msgSplit.at(1));
     }
+    else if(msgSplit.at(0) == "chat"){
+        this->chat->adicionarAConversa(msgSplit.at(1));
+    }
+
 }
