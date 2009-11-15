@@ -1,20 +1,22 @@
 #include "Jogador.h"
 #include <QDebug>
 
-Jogador::Jogador() : QThread()
+Jogador::Jogador(int t) : QThread()
 {
+    tipo_conexao=t;
     this->server = new Servidor();
     this->cliente = new Socket();
     this->chat = new Chat();
 }
+
 void Jogador::init(){
     if(tipo_conexao==CLIENTE){
         this->cliente->init();
-        this->chat->show();
+        //this->chat->show();
     }
     else {
         this->server->init();
-        this->chat->show();
+        //this->chat->show();
     }
 }
 
