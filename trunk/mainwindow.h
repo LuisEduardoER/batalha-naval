@@ -32,7 +32,7 @@
 #include "Socket.h"
 #include "Servidor.h"
 #include "frmconexao.h"
-
+#include "Jogador.h"
 
 
 
@@ -66,10 +66,7 @@ public:
     void NaufragarEmbarcacao(int);
     bool VerificaFim();
 
-    Servidor *server;
-    Socket *cliente;
-
-    void init();
+    Jogador *player;
 
     Chat* chat;
 
@@ -99,8 +96,6 @@ private:
 
     int numN;
 
-    void run();
-
 private slots:
     void on_actionConectar_triggered();
     void on_radioButton_2_clicked();
@@ -111,9 +106,6 @@ public slots:
     void click_btn1(int);
     void click_btn2(int);
     void setNumN();
-
-    void EnviarMensagem();
-    void LerMensagem();
 
 protected:
 

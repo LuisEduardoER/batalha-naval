@@ -9,14 +9,16 @@ SOURCES += main.cpp \
     Servidor.cpp \
     Chat.cpp \
     conexao.cpp \
-    frmconexao.cpp
+    frmconexao.cpp \
+    Jogador.cpp
 HEADERS += mainwindow.h \
     Socket.h \
     Servidor.h \
     Chat.h \
     ui_Chat.h \
     conexao.h \
-    frmconexao.h
+    frmconexao.h \
+    Jogador.h
 FORMS += mainwindow.ui \
     Chat.ui \
     conexao.ui \

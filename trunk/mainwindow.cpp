@@ -514,70 +514,11 @@ void MainWindow::on_actionConectar_triggered()
         port=conexao->con->port();
         host=conexao->con->host();
         tipo_conexao=conexao->con->tipo_conexao;
-        server = new Servidor();
-        cliente = new Socket();
-        init();
-        run();
-    }
-}
-
-void MainWindow::init(){
-    if(tipo_conexao==CLIENTE){
-        this->cliente->init();
-        this->chat->show();
-    }
-    else {
-        this->server->init();
-        this->chat->show();
-    }
-}
-
-
-void MainWindow::run(){
-    if(tipo_conexao==CLIENTE){
-        connect (this->chat, SIGNAL(EnviarMensagem()), this, SLOT(EnviarMensagem()));
-        connect (this->cliente->socket, SIGNAL(readyRead()), this, SLOT(LerMensagem()));
-    }
-    else{
-        connect (this->chat, SIGNAL(EnviarMensagem()), this, SLOT(EnviarMensagem()));
-        while(this->server->cliente ==0);
-        if(this->server->cliente != 0){
-            qDebug("tomo no cu");
-            connect (this->server->cliente, SIGNAL(readyRead()), this, SLOT(LerMensagem()));
-        }
-    }
-}
-
-void MainWindow::LerMensagem(){
-    if(tipo_conexao==CLIENTE){
-        QString msg;
-        msg = this->cliente->LerMensagem();
-        qDebug()<<msg;
-        this->chat->adicionarAConversa(msg);
-    }
-    else{
-        QString msg;
-        msg = this->server->LerMensagem();
-        qDebug()<<msg;
-        this->chat->adicionarAConversa(msg);
-    }
-}
-
-void MainWindow::EnviarMensagem(){
-    if(tipo_conexao==CLIENTE){
-        QString msg;
-        msg = this->chat->getMensagem();
-        this->chat->clearMensagem();
-        this->cliente->EnviarMensagem(msg);
-        this->chat->adicionarAConversa(msg);
-    }
-    else{
-        QString msg;
-        msg = this->chat->getMensagem();
-        this->chat->clearMensagem();
-        this->server->EnviarMensagem(msg);
-        this->chat->adicionarAConversa(msg);
-        qDebug()<<msg;
+        player = new Jogador(tipo_conexao);
+        player->init();
+        player->start();
+        delete(chat);
+        ui->horizontalLayout_2->addWidget(player->chat,Qt::AlignRight);
     }
 }
 
