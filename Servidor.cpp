@@ -1,5 +1,6 @@
 #include "Servidor.h"
 #include <iostream>
+#include <QMessageBox>
 
 using namespace std;
 

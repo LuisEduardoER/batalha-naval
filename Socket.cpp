@@ -11,7 +11,7 @@ Socket::Socket(int p, QString h) : QObject(){
 void Socket::init(){
     this->socket = new QTcpSocket();
     this->socket->connectToHost(host,port);
-    //connect (this->socket, SIGNAL(readyRead()), this, SLOT(LerMensagem()));
+    connect (this->socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(ErroDeConexao()));
 }
 
 QString Socket::LerMensagem(){
@@ -32,4 +32,9 @@ void  Socket::EnviarMensagem(QString _msg){
         this->socket->open(QIODevice::ReadWrite);
     }
     this->socket->write(data);
+}
+void Socket::ErroDeConexao(){
+    QMessageBox msgBox;
+    msgBox.setText("Ocorreu um erro na conexão com o servidor");
+    msgBox.exec();
 }

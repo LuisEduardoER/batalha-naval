@@ -16,6 +16,8 @@ public:
 
     int port;
     QString host;
+public slots:
+    void ErroDeConexao();
 private:
 
     bool error;
