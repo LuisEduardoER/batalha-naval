@@ -29,7 +29,7 @@ public:
     void FazerJogada(QString _msg);
 public slots:
     void EnviarMensagem();
-    void EnviarMensagem(QString _msg, int _mode);
+    void EnviarMensagem(QString _msg);
     void LerMensagem();
 signals:
     void AcabouOJogo(QString _msg);
