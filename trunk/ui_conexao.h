@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'conexao.ui'
 **
-** Created: Sun 15. Nov 01:58:56 2009
+** Created: Mon 16. Nov 03:04:28 2009
 **      by: Qt User Interface Compiler version 4.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!

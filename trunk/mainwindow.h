@@ -75,7 +75,8 @@ public:
 
     Chat* chat;
 
-    int fim, jogada, acerto;
+    int jogada;
+    QString acerto, fim;
 
 private:
     Ui::MainWindow *ui;
