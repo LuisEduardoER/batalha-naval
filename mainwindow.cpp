@@ -164,7 +164,7 @@ void MainWindow::click_btn2(int pos){
     player->FazerJogada(QString::number(pos));
 
     if(acerto!="sim"){
-        BloqueiaMapa2();
+        //BloqueiaMapa2();
     }
 
 
@@ -429,7 +429,6 @@ bool MainWindow::VerificaJogada(int pos){
         if(aux==MAR)
             return(false);
         else{
-            btn_mapa2.at(pos)->hide();
             frm_mapa1.at(pos)->setStyleSheet("background-image: url(explodido.gif)");
             pos_mapa1.replace(pos, aux+BARCOATINGIDO);
             for(int i=0; i<100; i++){
