@@ -15,7 +15,7 @@ public:
     void init();
     //QList<QTcpSocket*> cliente;
     QTcpSocket *cliente;
-    void EnviarMensagem(QString _msg, int _mode);
+    void EnviarMensagem(QString _msg);
     QString LerMensagem();
 
     int port;

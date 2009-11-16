@@ -34,6 +34,9 @@ void Jogador::run(){
             connect (this->server->cliente, SIGNAL(readyRead()), this, SLOT(LerMensagem()));
         }
     }
+    connect (this, SIGNAL(AcabouOJogo(QString)), this, SLOT(EnviarMensagem(QString)));
+    connect (this, SIGNAL(AcertouOTiro(QString)), this, SLOT(EnviarMensagem(QString)));
+    connect (this, SIGNAL(NovaJogada(QString)), this, SLOT(EnviarMensagem(QString)));
 }
 
 void Jogador::EnviarMensagem(){
@@ -41,24 +44,26 @@ void Jogador::EnviarMensagem(){
         QString msg;
         msg = this->chat->getMensagem();
         this->chat->clearMensagem();
-        this->cliente->EnviarMensagem(msg,CHAT);
+        msg.push_front("chat::");
+        this->cliente->EnviarMensagem(msg);
         this->chat->adicionarAConversa(msg);
     }
     else{
         QString msg;
         msg = this->chat->getMensagem();
         this->chat->clearMensagem();
-        this->server->EnviarMensagem(msg, CHAT);
+        msg.push_front("chat::");
+        this->server->EnviarMensagem(msg);
         this->chat->adicionarAConversa(msg);
         qDebug()<<msg;
     }
 }
-void Jogador::EnviarMensagem(QString _msg, int _mode){
+void Jogador::EnviarMensagem(QString _msg){
     if(tipo_conexao==CLIENTE){
-        this->cliente->EnviarMensagem(_msg,_mode);
+        this->cliente->EnviarMensagem(_msg);
     }
     else{
-        this->server->EnviarMensagem(_msg,_mode);
+        this->server->EnviarMensagem(_msg);
     }
 }
 void Jogador::LerMensagem(){
@@ -88,14 +93,18 @@ void Jogador::LerMensagem(){
 }
 void Jogador::FimDeJogo(bool _resposta){
     if(_resposta == true)
-        emit AcabouOJogo();
+        emit AcabouOJogo("end::sim");
     else
-        emit NaoAcabouAinda();
+        emit AcabouOJogo("end::nao");
 
 }
 void Jogador::AlvoDoTiro(bool _resposta){
     if(_resposta == true)
-        emit AcertouOTiro();
+        emit AcertouOTiro("hit::sim");
     else
-        emit Agua();
+        emit AcertouOTiro("hit::nao");
+}
+
+void Jogador::FazerJogada(QString _msg){
+    emit NovaJogada("game::"+_msg);
 }
