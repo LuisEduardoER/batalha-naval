@@ -86,3 +86,16 @@ void Jogador::LerMensagem(){
 
     }
 }
+void Jogador::FimDeJogo(bool _resposta){
+    if(_resposta == true)
+        emit AcabouOJogo();
+    else
+        emit NaoAcabouAinda();
+
+}
+void Jogador::AlvoDoTiro(bool _resposta){
+    if(_respota == true){
+        emit AcertouOTiro();
+    else
+        emit Agua();
+}
