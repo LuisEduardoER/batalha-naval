@@ -73,6 +73,7 @@ void Jogador::LerMensagem(){
         msg = this->cliente->LerMensagem();
     }
     else{
+        qDebug("vtnc");
         msg = this->server->LerMensagem();
    }
     msgSplit = msg.split("::");
