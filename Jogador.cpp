@@ -92,15 +92,15 @@ void Jogador::LerMensagem(){
         emit pacoteFim(msgSplit.at(1));
     }
 }
-void Jogador::FimDeJogo(bool _resposta){
-    if(_resposta == true)
+void Jogador::FimDeJogo(QString _resposta){
+    if(_resposta == "sim")
         emit AcabouOJogo("end::sim");
     else
         emit AcabouOJogo("end::nao");
 
 }
-void Jogador::AlvoDoTiro(bool _resposta){
-    if(_resposta == true)
+void Jogador::AlvoDoTiro(QString _resposta){
+    if(_resposta == "sim")
         emit AcertouOTiro("hit::sim");
     else
         emit AcertouOTiro("hit::nao");
