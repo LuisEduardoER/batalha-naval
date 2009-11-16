@@ -156,15 +156,15 @@ void MainWindow::click_btn1(int pos){
 }
 
 void MainWindow::click_btn2(int pos){
-    int num = btn_gp1->id(btn_gp1->button(pos));
+    int num = btn_gp2->id(btn_gp2->button(pos));
     btn_gp2->button(pos)->hide();
-    frm_mapa2.at(pos)->setStyleSheet("");
 
-
-    player->FazerJogada(QString::number(pos));
-
+    player->FazerJogada(QString::number(num));
     if(acerto!="sim"){
+        frm_mapa2.at(pos)->setStyleSheet("");
         //BloqueiaMapa2();
+    }else{
+
     }
 
 
@@ -542,7 +542,7 @@ void MainWindow::pacoteFim(QString st){
 
 void MainWindow::pacoteJogada(QString st){
     jogada=st.toInt();
-    if(VerificaJogada(jogada))
+    if(VerificaJogada(jogada)==true)
         if(qtdBarco==0){
             this->player->FimDeJogo("sim");
             this->player->AlvoDoTiro("sim");
