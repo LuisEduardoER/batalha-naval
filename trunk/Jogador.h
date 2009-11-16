@@ -24,8 +24,8 @@ public:
     int port;
     QString host;
 
-    void FimDeJogo(bool _resposta);
-    void AlvoDoTiro(bool _resposta);
+    void FimDeJogo(QString _resposta);
+    void AlvoDoTiro(QString _resposta);
     void FazerJogada(QString _msg);
 public slots:
     void EnviarMensagem();
