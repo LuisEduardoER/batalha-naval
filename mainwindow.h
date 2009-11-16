@@ -75,6 +75,8 @@ public:
 
     Chat* chat;
 
+    int fim, jogada, acerto;
+
 private:
     Ui::MainWindow *ui;
 
@@ -111,6 +113,10 @@ public slots:
     void click_btn1(int);
     void click_btn2(int);
     void setNumN();
+
+    void pacoteFim(QString);
+    void pacoteJogada(QString);
+    void pacoteAcerto(QString);
 
 protected:
 

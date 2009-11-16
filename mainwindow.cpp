@@ -526,7 +526,20 @@ void MainWindow::on_actionConectar_triggered()
             delete(chat);
             ui->horizontalLayout_2->addWidget(player->chat,Qt::AlignRight);
             connect (this, SIGNAL( pacoteFim(QString)), this, SLOT(verificarFim(QString)));
+            connect (this, SIGNAL( pacoteJogada(QString)), this, SLOT(verificarJogada(QString)));
+            connect (this, SIGNAL( pacoteAcerto(QString)), this, SLOT(verificarAcerto(QString)));
         }
     }
 }
 
+void MainWindow::pacoteFim(QString st){
+    fim=st.toInt();
+}
+
+void MainWindow::pacoteJogada(QString st){
+    jogada=st.toInt();
+}
+
+void MainWindow::pacoteAcerto(QString st){
+    acerto=st.toInt();
+}
