@@ -41,16 +41,24 @@ void Jogador::EnviarMensagem(){
         QString msg;
         msg = this->chat->getMensagem();
         this->chat->clearMensagem();
-        this->cliente->EnviarMensagem(msg,1);
+        this->cliente->EnviarMensagem(msg,CHAT);
         this->chat->adicionarAConversa(msg);
     }
     else{
         QString msg;
         msg = this->chat->getMensagem();
         this->chat->clearMensagem();
-        this->server->EnviarMensagem(msg, 1);
+        this->server->EnviarMensagem(msg, CHAT);
         this->chat->adicionarAConversa(msg);
         qDebug()<<msg;
+    }
+}
+void Jogador::EnviarMensagem(QString _msg, int _mode){
+    if(tipo_conexao==CLIENTE){
+        this->cliente->EnviarMensagem(_msg,_mode);
+    }
+    else{
+        this->server->EnviarMensagem(_msg,_mode);
     }
 }
 void Jogador::LerMensagem(){

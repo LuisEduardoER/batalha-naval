@@ -1,11 +1,9 @@
 #ifndef SOCKET_H
 #define SOCKET_H
-
-#define CHAT 1
-#define JOGADA 2
-#define RESPOSTA 3
-#define FIM 4
-
+#define CHAT 3
+#define JOGADA 4
+#define RESPOSTA 5
+#define FIM 6
 #include <QTcpSocket>
 #include <iostream>
 #include <QString>

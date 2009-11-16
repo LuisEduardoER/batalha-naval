@@ -1,11 +1,9 @@
 #ifndef SERVIDOR_H
 #define SERVIDOR_H
-
 #define CHAT 3
 #define JOGADA 4
 #define RESPOSTA 5
 #define FIM 6
-
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QList>
