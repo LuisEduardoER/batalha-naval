@@ -157,15 +157,18 @@ void MainWindow::click_btn1(int pos){
 
 void MainWindow::click_btn2(int pos){
     int num = btn_gp1->id(btn_gp1->button(pos));
-    if(VerificaJogada(pos)==false){
-        btn_gp2->button(pos)->hide();
-        frm_mapa2.at(pos)->setStyleSheet("");
-        //BloqueiaMapa2();
-    }
+    btn_gp2->button(pos)->hide();
+    frm_mapa2.at(pos)->setStyleSheet("");
+    //esse if era soh pra testa na msm main se funcionava a jogada
+
     if(tipo_conexao==SERVIDOR){
         player->server->EnviarMensagem(QString::number(pos), JOGADA); //envia pos
-        // player->server->LerMensagem()// depois recebe o res da jogada
+        //player->server->LerMensagem()// depois recebe o res da jogada
         // caso tenha acertado mantem o mapa 2 desbloqueado, senao bloqueia
+
+        //if(acerto==false){
+        //    BloqueiaMapa2();
+        //}
     }
     else{
         player->cliente->EnviarMensagem(QString::number(pos), JOGADA);
@@ -532,7 +535,7 @@ void MainWindow::on_actionConectar_triggered()
             player->start();
             delete(chat);
             ui->horizontalLayout_2->addWidget(player->chat,Qt::AlignRight);
-
+            connect(player, SIGNAL(LerMensagem()), this, SLOT(VerificaJogada(int)));
         }
     }
 }
