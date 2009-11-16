@@ -23,10 +23,16 @@ public:
     int tipo_conexao;
     int port;
     QString host;
+
+    void FimDeJogo();
 public slots:
     void EnviarMensagem();
     void EnviarMensagem(QString _msg, int _mode);
     void LerMensagem();
+signals:
+    void AcabouOJogo();
+    void NaoAcabouAinda();
+    void PassouAVez();
 private:
     void run();
 
