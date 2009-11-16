@@ -162,6 +162,14 @@ void MainWindow::click_btn2(int pos){
         frm_mapa2.at(pos)->setStyleSheet("");
         //BloqueiaMapa2();
     }
+    if(tipo_conexao==SERVIDOR){
+        player->server->EnviarMensagem(QString::number(pos), JOGADA); //envia pos
+        // player->server->LerMensagem()// depois recebe o res da jogada
+        // caso tenha acertado mantem o mapa 2 desbloqueado, senao bloqueia
+    }
+    else{
+        player->cliente->EnviarMensagem(QString::number(pos), JOGADA);
+    }
 }
 
 void MainWindow::setNumN(){
@@ -524,6 +532,7 @@ void MainWindow::on_actionConectar_triggered()
             player->start();
             delete(chat);
             ui->horizontalLayout_2->addWidget(player->chat,Qt::AlignRight);
+
         }
     }
 }
