@@ -79,11 +79,11 @@ void Jogador::LerMensagem(){
             this->chat->adicionarAConversa(msgSplit.at(1));
         }
     }else if(msgSplit.at(0) == "game"){
-
+        emit pacoteJogada(msgSplit.at(1));
     }else if(msgSplit.at(0) == "hit"){
-
+        emit pacoteAcerto(msgSplit.at(1));
     }else if(msgSplit.at(0) == "end"){
-
+        emit pacoteFim(msgSplit.at(1));
     }
 }
 void Jogador::FimDeJogo(bool _resposta){
@@ -94,7 +94,7 @@ void Jogador::FimDeJogo(bool _resposta){
 
 }
 void Jogador::AlvoDoTiro(bool _resposta){
-    if(_respota == true){
+    if(_resposta == true)
         emit AcertouOTiro();
     else
         emit Agua();
