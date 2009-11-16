@@ -163,7 +163,7 @@ void MainWindow::click_btn2(int pos){
 
     player->FazerJogada(QString::number(pos));
 
-    if(!acerto){
+    if(acerto!="sim"){
         BloqueiaMapa2();
     }
 
@@ -538,27 +538,27 @@ void MainWindow::on_actionConectar_triggered()
 }
 
 void MainWindow::pacoteFim(QString st){
-    fim=st.toInt();
+    fim=st;
 }
 
 void MainWindow::pacoteJogada(QString st){
     jogada=st.toInt();
     if(VerificaJogada(jogada))
         if(qtdBarco==0){
-            this->player->FimDeJogo(true);
-            this->player->AlvoDoTiro(true);
+            this->player->FimDeJogo("sim");
+            this->player->AlvoDoTiro("sim");
         }
         else{
-            this->player->AlvoDoTiro(true);
-            this->player->FimDeJogo(false);
+            this->player->AlvoDoTiro("sim");
+            this->player->FimDeJogo("nao");
         }
     else{
-        this->player->AlvoDoTiro(false);
+        this->player->AlvoDoTiro("nao");
         DesbloqueiaMapa2();
     }
 }
 
 void MainWindow::pacoteAcerto(QString st){
-    acerto=st.toInt();
+    acerto=st;
 
 }
