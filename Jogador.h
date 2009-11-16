@@ -26,15 +26,15 @@ public:
 
     void FimDeJogo(bool _resposta);
     void AlvoDoTiro(bool _resposta);
+    void FazerJogada(QString _msg);
 public slots:
     void EnviarMensagem();
     void EnviarMensagem(QString _msg, int _mode);
     void LerMensagem();
 signals:
-    void AcabouOJogo();
-    void NaoAcabouAinda();
-    void AcertouOTiro();
-    void Agua();
+    void AcabouOJogo(QString _msg);
+    void AcertouOTiro(QString _msg);
+    void NovaJogada(QString _msg);
     void pacoteFim(QString _msg);
     void pacoteJogada(QString _msg);
     void pacoteAcerto(QString _msg);
