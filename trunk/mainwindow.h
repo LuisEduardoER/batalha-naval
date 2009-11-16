@@ -17,6 +17,12 @@
 #define SERVIDOR 1
 #define CLIENTE 2
 
+#define CHAT 3
+#define JOGADA 4
+#define RESPOSTA 5
+#define FIM 6
+
+
 #include <QtGui/QMainWindow>
 #include <QLabel>
 #include <QFrame>
