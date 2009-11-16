@@ -159,9 +159,14 @@ void MainWindow::click_btn2(int pos){
     int num = btn_gp1->id(btn_gp1->button(pos));
     btn_gp2->button(pos)->hide();
     frm_mapa2.at(pos)->setStyleSheet("");
-    //esse if era soh pra testa na msm main se funcionava a jogada
+
 
     player->FazerJogada(QString::number(pos));
+
+    if(!acerto){
+        BloqueiaMapa2();
+    }
+
 
 }
 
@@ -538,8 +543,22 @@ void MainWindow::pacoteFim(QString st){
 
 void MainWindow::pacoteJogada(QString st){
     jogada=st.toInt();
+    if(VerificaJogada(jogada))
+        if(qtdBarco==0){
+            this->player->FimDeJogo(true);
+            this->player->AlvoDoTiro(true);
+        }
+        else{
+            this->player->AlvoDoTiro(true);
+            this->player->FimDeJogo(false);
+        }
+    else{
+        this->player->AlvoDoTiro(false);
+        DesbloqueiaMapa2();
+    }
 }
 
 void MainWindow::pacoteAcerto(QString st){
     acerto=st.toInt();
+
 }
