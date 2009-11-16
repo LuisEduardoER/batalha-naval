@@ -25,6 +25,7 @@ public:
     QString host;
 public slots:
     void EnviarMensagem();
+    void EnviarMensagem(QString _msg, int _mode);
     void LerMensagem();
 private:
     void run();
