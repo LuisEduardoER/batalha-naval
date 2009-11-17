@@ -160,13 +160,6 @@ void MainWindow::click_btn2(int pos){
     btn_gp2->button(pos)->hide();
 
     player->FazerJogada(QString::number(num));
-    if(acerto!="sim"){
-        frm_mapa2.at(pos)->setStyleSheet("");
-        //BloqueiaMapa2();
-    }else{
-
-    }
-
 
 }
 
@@ -426,8 +419,11 @@ bool MainWindow::VerificaJogada(int pos){
 
     if(pos>-1 && pos <100){
         int aux = pos_mapa1.at(pos);
-        if(aux==MAR)
+        btn_mapa1.at(pos)->hide();
+        if(aux==MAR){
+            frm_mapa1.at(pos)->setStyleSheet("");
             return(false);
+        }
         else{
             frm_mapa1.at(pos)->setStyleSheet("background-image: url(explodido.gif)");
             pos_mapa1.replace(pos, aux+BARCOATINGIDO);
@@ -542,17 +538,18 @@ void MainWindow::pacoteFim(QString st){
 
 void MainWindow::pacoteJogada(QString st){
     jogada=st.toInt();
-    if(VerificaJogada(jogada)==true)
+    if(VerificaJogada(jogada)==true){
+        this->player->AlvoDoTiro("sim");
         if(qtdBarco==0){
             this->player->FimDeJogo("sim");
-            this->player->AlvoDoTiro("sim");
         }
         else{
-            this->player->AlvoDoTiro("sim");
             this->player->FimDeJogo("nao");
         }
+    }
     else{
         this->player->AlvoDoTiro("nao");
+        this->player->FimDeJogo("nao");
         DesbloqueiaMapa2();
     }
 }
@@ -560,4 +557,7 @@ void MainWindow::pacoteJogada(QString st){
 void MainWindow::pacoteAcerto(QString st){
     acerto=st;
 
+    if(acerto!="sim"){
+        //this->BloqueiaMapa2();
+    }
 }
